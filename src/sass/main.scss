@@ -1,0 +1,16 @@
+/****** IMPORT ABSTRACTS STYLES ******/
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+
+/****** IMPORT BASE STYLES ******/
+@import "./base/base";
+@import "./base/typography";
+
+/****** IMPORT COMPONENTS STYLES ******/
+@import "./components/weather";
+
+/****** IMPORT LAYOUTS STYLES ******/
+@import "./layouts/header";
+
+/****** IMPORT HOME STYLES ******/
+@import "./pages/home";

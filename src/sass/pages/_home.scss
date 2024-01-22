@@ -1,0 +1,6 @@
+.home {
+  margin: 0 auto;
+  @include respond(md) {
+    width: 1024px !important;
+  }
+}

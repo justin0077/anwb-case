@@ -1,0 +1,153 @@
+.weather {
+  width: 100%;
+
+  @include respond(smmd) {
+    width: 80%;
+    // display: flex;
+    margin: 0 auto;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include respond(smmd) {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    div {
+      width: 100%;
+    }
+
+    &-input {
+      width: 100% !important;
+      border-radius: 2rem;
+      padding: 2rem;
+      font-family: "Poppins", sans-serif;
+
+      @include respond(smmd) {
+        width: 100%;
+      }
+    }
+
+    &-button {
+      background-color: rgb(0, 61, 134) !important;
+      width: 100%;
+      padding: 0.45rem 0;
+      color: #fafafa;
+      border-radius: 2rem;
+      font-family: "Poppins", sans-serif;
+
+      @include respond(smmd) {
+        width: 200px;
+      }
+    }
+  }
+
+  &__output {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+
+    @include respond(smmd) {
+      align-items: start;
+    }
+
+    &-location {
+      font-size: 2rem;
+      font-family: "Poppins", sans-serif;
+      color: #3e3e3e;
+      font-weight: 400;
+    }
+
+    &-temp {
+      position: relative;
+      font-family: "Poppins", sans-serif;
+      margin-top: 3rem;
+      width: 100%;
+      text-align: center;
+
+      @include respond(smmd) {
+        text-align: left;
+      }
+
+      h1 {
+        font-size: 6rem;
+        font-weight: 400;
+        color: #3e3e3e;
+      }
+      span {
+        position: absolute;
+        top: 2rem;
+        font-size: 1.25rem;
+      }
+    }
+
+    p {
+      font-family: "Poppins", sans-serif;
+    }
+
+    &-icon {
+      position: absolute;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      right: -2rem;
+      top: -6rem;
+
+      @include respond(smmd) {
+        left: 10rem;
+      }
+    }
+
+    &-wind {
+      font-weight: 200;
+    }
+  }
+
+  hr {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  &__forecast {
+    margin-top: 2rem;
+    font-family: "Poppins", sans-serif;
+
+    @include respond(smmd) {
+      align-self: end;
+      position: absolute;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      li {
+        display: grid;
+        grid-template-columns: auto 100px 100px;
+        align-items: center;
+        grid-gap: 1rem;
+      }
+    }
+
+    &-day {
+      font-size: 1.25rem;
+    }
+
+    &-icon {
+    }
+
+    &-temp {
+      text-align: right;
+      font-size: 1.25rem;
+    }
+  }
+}

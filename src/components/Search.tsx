@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChangeEvent, FormEvent, useEffect } from "react";
+import { ChangeEvent, FormEvent } from "react";
 
 // Hier definieer ik de Search Properties die vanuit het Weather component wordt meegegeven
 interface SearchProps {

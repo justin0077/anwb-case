@@ -14,6 +14,7 @@ const Weather: React.FC = () => {
   const [forecastData, setForecastData] = useState<ForecastWeatherData | null>(
     null
   );
+  const [animationKey, setAnimationKey] = useState(0);
 
   // Hier wordt de data gefetched
   const fetchData = async () => {
@@ -39,6 +40,7 @@ const Weather: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     fetchData();
+    setAnimationKey((prevKey) => prevKey + 1);
   };
 
   return (
@@ -49,7 +51,7 @@ const Weather: React.FC = () => {
         handleSubmit={handleSubmit}
       />
       {data ? (
-        <motion.div className="weather__output">
+        <motion.div key={animationKey} className="weather__output">
           <motion.h1
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}

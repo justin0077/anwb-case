@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Routes, Route } from "react-router-dom";
 
 // Components
 import Header from "./layouts/Header";
-import Footer from "./layouts/Footer";
 
 // Routes
 import Home from "./pages/Home";
 
 const App = () => {
+  const queryClient = new QueryClient();
+
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-
-      <Footer />
+      <QueryClientProvider client={queryClient}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 // Hier heb ik de interface voor de current weather
@@ -30,21 +31,34 @@ export interface ForecastWeatherData {
 }
 
 // Dit is de functie voor het ophalen van de current weather
-export const fetchWeatherData = async (
-  location: string
-): Promise<CurrentWeatherData> => {
-  const response = await axios.get(
-    `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&lang=nl&limit=5&appid=8f36c76b9bdb9d301336fba4300e88db`
-  );
-  return response.data;
+export const fetchWeatherData = (location: string) => {
+  const { data, isError } = useQuery({
+    queryKey: ["weather", location],
+    queryFn: async () => {
+      const response = await axios.get(
+        `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&lang=nl&limit=5&appid=${
+          import.meta.env.VITE_API_KEY
+        }`
+      );
+      return response.data;
+    },
+  });
+
+  return { data };
 };
 
-// Dit is de functie voor het ophalen van de forecast weather
-export const fetchForecastData = async (
-  location: string
-): Promise<ForecastWeatherData> => {
-  const response = await axios.get(
-    `http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&lang=nl&appid=8f36c76b9bdb9d301336fba4300e88db`
-  );
-  return response.data;
+export const fetchForecastData = (location: string) => {
+  const { data, isError } = useQuery({
+    queryKey: ["forecast", location],
+    queryFn: async () => {
+      const response = await axios.get(
+        `http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&lang=nl&appid=${
+          import.meta.env.VITE_API_KEY
+        }`
+      );
+      return response.data;
+    },
+  });
+
+  return { data };
 };

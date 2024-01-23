@@ -117,6 +117,7 @@
 
   &__forecast {
     margin-top: 2rem;
+    margin-bottom: 4rem;
     font-family: "Poppins", sans-serif;
 
     @include respond(smmd) {

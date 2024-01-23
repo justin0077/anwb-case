@@ -31,6 +31,7 @@ const Forecast: React.FC<ForecastProps> = ({ forecastData }) => {
     const dayOfWeek = date.getDay();
     return daysOfWeek[dayOfWeek];
   };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -39,33 +40,37 @@ const Forecast: React.FC<ForecastProps> = ({ forecastData }) => {
       className="weather__forecast"
     >
       <ul>
-        {forecastData.list
-          .filter((forecastItem) => forecastItem.dt_txt.includes("12:00"))
-          .slice(0, 3)
-          .map((forecastItem, index) => (
-            <motion.li
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: 0.6 + index * 0.2,
-                ease: "easeIn",
-              }}
-              key={index}
-            >
-              <img
-                className="weather__forecast-icon"
-                src={`https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`}
-                alt={forecastItem.weather[0].description}
-              />
-              <span className="weather__forecast-day">
-                {getDutchDay(forecastItem.dt_txt)}
-              </span>
-              <span className="weather__forecast-temp">
-                {forecastItem.main.temp.toFixed(0)}°C
-              </span>
-            </motion.li>
-          ))}
+        {forecastData && forecastData.list ? (
+          forecastData.list
+            .filter((forecastItem) => forecastItem.dt_txt.includes("12:00"))
+            .slice(0, 3)
+            .map((forecastItem, index) => (
+              <motion.li
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.6 + index * 0.2,
+                  ease: "easeIn",
+                }}
+                key={index}
+              >
+                <img
+                  className="weather__forecast-icon"
+                  src={`https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}.png`}
+                  alt={forecastItem.weather[0].description}
+                />
+                <span className="weather__forecast-day">
+                  {getDutchDay(forecastItem.dt_txt)}
+                </span>
+                <span className="weather__forecast-temp">
+                  {forecastItem.main.temp.toFixed(0)}°C
+                </span>
+              </motion.li>
+            ))
+        ) : (
+          <p>Weersverwachting Laden...</p>
+        )}
       </ul>
     </motion.div>
   );

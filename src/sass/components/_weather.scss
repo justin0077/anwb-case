@@ -108,6 +108,10 @@
       top: -6rem;
 
       @include respond(smmd) {
+        left: 5rem;
+      }
+
+      @include respond(md) {
         left: 10rem;
       }
     }

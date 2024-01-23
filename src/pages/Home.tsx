@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 // Components
 import Weather from "../components/Weather";
 

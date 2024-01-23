@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { RotatingLines } from "react-loader-spinner";
 import Search from "./Search";
 import Forecast from "./Forecast";
 import { fetchWeatherData, fetchForecastData } from "../utils/WeatherApi";
@@ -36,7 +37,9 @@ const Weather: React.FC = () => {
         handleSubmit={handleSubmit}
       />
       {weatherError ? (
-        <p>Deze stad bestaat niet! Probeer een andere stad</p>
+        <p className="weather__exist">
+          Deze stad bestaat niet! Probeer een andere stad
+        </p>
       ) : (
         weatherData && (
           <motion.div key={animationKey} className="weather__output">
@@ -96,15 +99,25 @@ const Weather: React.FC = () => {
       )}{" "}
       <AnimatePresence>
         {!weatherError && !weatherData && (
-          <motion.h1
-            className="weather__retrieve"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.5, ease: "easeIn" }}
-          >
-            Weerinformatie ophalen
-          </motion.h1>
+          <div className="weather__loader">
+            <RotatingLines
+              visible={true}
+              width="60"
+              strokeWidth="3"
+              strokeColor="orange"
+              animationDuration="0.75"
+              ariaLabel="rotating-lines-loading"
+            />
+            <motion.h1
+              className="weather__retrieve"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.5, ease: "easeIn" }}
+            >
+              Weerinformatie ophalen
+            </motion.h1>
+          </div>
         )}
       </AnimatePresence>
     </section>
